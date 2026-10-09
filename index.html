@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b1a">
+<meta name="mobile-web-app-capable" content="yes">
+<title>مفاجأة لنورا</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <symbol id="gmail" viewBox="0 0 64 48"><rect x="2" y="2" width="60" height="44" rx="6" fill="#fff"/><path d="M2 8l30 22L62 8" fill="none" stroke="#ea4335" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M5 9v31" stroke="#4285f4" stroke-width="6" stroke-linecap="round"/><path d="M59 9v31" stroke="#34a853" stroke-width="6" stroke-linecap="round"/></symbol>
+ <linearGradient id="igg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".3" stop-color="#fa7e1e"/><stop offset=".55" stop-color="#d62976"/><stop offset=".8" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient>
+ <symbol id="ig" viewBox="0 0 100 100"><rect width="100" height="100" rx="24" fill="url(#igg)"/><rect x="22" y="22" width="56" height="56" rx="16" fill="none" stroke="#fff" stroke-width="6"/><circle cx="50" cy="50" r="13" fill="none" stroke="#fff" stroke-width="6"/><circle cx="68" cy="32" r="4" fill="#fff"/></symbol>
+</defs></svg>
+
+<div id="bgfx"></div>
+<div id="stars"></div>
+<div id="hearts"></div>
+<div id="glow"></div>
+<canvas id="fx"></canvas>
+
+<div id="hud">
+ <span id="plabel">المرحلة 1 من 8</span>
+ <div id="ptrack"><div id="pbar"></div></div>
+ <button class="hbtn" id="mute" title="كتم / تشغيل الصوت" aria-label="كتم الصوت">🔊</button>
+ <button class="hbtn" id="replayAll" title="إعادة التجربة من الأول" aria-label="إعادة من الأول">🔁</button>
+</div>
+
+<main id="stage">
+
+ <!-- 1: مقدمة -->
+ <section class="scene" id="s1">
+  <h1>⚠️ تنبيه خاص جداً</h1>
+  <p class="sub">فيه حاجة مهمة جداً مستنياكي يا نورا... جهزي نفسك وافتحي الصوت 🔊</p>
+  <button class="btn big" id="start">ابدأي 👀</button>
+ </section>
+
+ <!-- 2: Gmail -->
+ <section class="scene" id="s2">
+  <div class="icon3d"><svg viewBox="0 0 64 48"><use href="#gmail"/></svg></div>
+  <h2>وصلك إيميل جديد 📬</h2>
+  <div class="mail" id="mail">
+   <div class="from">من: أحمد</div>
+   <div class="subj">عاجل جداً: مطلوب نورا في الشات 🚨</div>
+   <div class="body">فيه رسالة مهمة جداً مستنياكي... بس لازم تفتحي الإيميل الأول 😂</div>
+  </div>
+  <button class="btn" id="openMail">افتحي الإيميل 📩</button>
+  <div class="tiny">إيميل تمثيلي، مفيش أي اتصال بحساب حقيقي</div>
+ </section>
+
+ <!-- 3: الحمار -->
+ <section class="scene" id="s3">
+  <h2>مفاجأة! شوفي مين شبهك 🫏😂</h2>
+  <div class="donkeybox" id="donkeyBox">
+   <img id="donkeyImg" alt="صورة حمار" referrerpolicy="no-referrer" hidden>
+   <svg id="donkeySvg" viewBox="0 0 200 220" role="img" aria-label="رسمة حمار">
+    <rect width="200" height="220" fill="#d9f0ff"/>
+    <ellipse cx="62" cy="48" rx="16" ry="44" transform="rotate(-18 62 48)" fill="#8a7f76"/><ellipse cx="62" cy="52" rx="8" ry="30" transform="rotate(-18 62 52)" fill="#f0b8c0"/>
+    <ellipse cx="138" cy="48" rx="16" ry="44" transform="rotate(18 138 48)" fill="#8a7f76"/><ellipse cx="138" cy="52" rx="8" ry="30" transform="rotate(18 138 52)" fill="#f0b8c0"/>
+    <ellipse cx="100" cy="122" rx="52" ry="68" fill="#9a8f86"/>
+    <path d="M70 62 Q100 36 130 62 Q100 78 70 62Z" fill="#4a423c"/>
+    <ellipse cx="100" cy="168" rx="36" ry="30" fill="#eadfd2"/>
+    <ellipse cx="88" cy="170" rx="5" ry="7" fill="#4a423c"/><ellipse cx="112" cy="170" rx="5" ry="7" fill="#4a423c"/>
+    <circle cx="80" cy="114" r="9" fill="#fff"/><circle cx="120" cy="114" r="9" fill="#fff"/>
+    <circle cx="82" cy="115" r="5" fill="#222"/><circle cx="118" cy="115" r="5" fill="#222"/>
+    <path d="M90 188 Q100 196 110 188" stroke="#4a423c" stroke-width="3" fill="none" stroke-linecap="round"/>
+   </svg>
+  </div>
+  <p class="sub">ده التوأم المعتمد 😂 (هزار يا نورا، متزعليش)</p>
+  <button class="btn" id="donkeyNext">كفاية رخامة، كمّل 🙄</button>
+ </section>
+
+ <!-- 4: قلب الشاشة -->
+ <section class="scene" id="s4">
+  <div class="flipcard"><span class="upside">استني... الشاشة مقلوبة 🙃</span></div>
+  <p class="sub">اضغطي على الزرار وهنقلب الدنيا كلها</p>
+  <button class="btn big" id="flipBtn">اقلبي الشاشة 🔄</button>
+ </section>
+
+ <!-- 5: الإشعارات -->
+ <section class="scene" id="s5">
+  <h2 id="ntitle">الإشعارات بتوصل... 🔔</h2>
+  <div id="ncount">0</div>
+  <div class="tiny">رسالة من 20</div>
+  <div id="nbarw"><div id="nbar"></div></div>
+  <div id="nstack"></div>
+  <div class="row">
+   <button class="btn alt" id="nreplay">🔁 شغّلي التتابع تاني</button>
+   <button class="btn" id="nnext" hidden>كمّلي ➡️</button>
+  </div>
+ </section>
+
+ <!-- 6: إنستجرام -->
+ <section class="scene" id="s6">
+  <div id="igdark"></div>
+  <div class="igbanner" id="igbanner">
+   <div class="mini"><svg viewBox="0 0 100 100"><use href="#ig"/></svg></div>
+   <div><small>إشعار (تمثيلي)</small><div><bdi class="u">@_ahmed_hellal</bdi>: يا نورا ارجعي للشات يا حيوانة 😂😭</div></div>
+  </div>
+  <div id="igintro" style="display:flex;flex-direction:column;align-items:center;gap:14px">
+   <div class="igstage"><div class="igwave" id="igwave"></div><div class="igicon" id="igicon"><svg viewBox="0 0 100 100"><use href="#ig"/></svg></div></div>
+   <div id="iglist"></div>
+   <button class="btn big" id="igbtn" hidden>افتحي الشات يا نورا 👀</button>
+   <div class="tiny">كل ده شكل خيالي، مفيش اتصال بإنستجرام ولا أي حساب حقيقي</div>
+  </div>
+  <div id="chatwrap" hidden>
+   <div class="phone">
+    <div class="chead"><div class="av">😎</div><div><div><bdi class="u">_ahmed_hellal</bdi></div><div class="on">● نشط دلوقتي</div></div></div>
+    <div id="cmsgs"></div>
+    <div class="cinput">اكتبي رد... (شكل بس 😂)</div>
+   </div>
+   <button class="btn" id="chatnext" hidden style="margin-top:14px">كمّلي ➡️</button>
+  </div>
+ </section>
+
+ <!-- 7: إشعار الأعلى -->
+ <section class="scene" id="s7">
+  <div id="bwait">استني... الموضوع لسه ما خلصش 👀</div>
+  <div id="bresp" hidden>
+   <p class="sub" style="font-size:20px;font-weight:700;margin-bottom:14px">تمام، هنفضل نبعتلك لحد ما تعترفي إننا بنحبك 😂💀</p>
+   <button class="btn" id="bgo">كمّلي ➡️</button>
+  </div>
+ </section>
+ <div id="tbanner" role="alert">
+  <h3>رسالة عاجلة من أحمد 🚨</h3>
+  <p>ارجعي للشات يا حيوانة 😂❤️</p>
+  <div class="row"><button class="btn" id="bYes">حاضر يا رخم 😂</button><button class="btn alt" id="bNo">مش هرجع 😈</button></div>
+ </div>
+
+ <!-- 8: النهاية -->
+ <section class="scene" id="s8">
+  <div id="lines">
+   <p class="tline"></p><p class="tline"></p><p class="tline"></p><p class="tline"></p>
+  </div>
+  <div class="finalcard" id="fcard" hidden>NORA — OFFICIALLY THE MOST ANNOYING &amp; LOVABLE PERSON 😂❤️</div>
+  <p class="sub" id="fsub" hidden>صاحبتنا الجميلة، مصدر الصداع والطاقة الإيجابية في نفس الوقت.</p>
+  <button class="btn big" id="loveBtn" hidden>اضغطي هنا لو بتحبينا 😂</button>
+  <div id="confess" hidden>أهووو اعترفتي 😂❤️</div>
+  <div id="sign" hidden>Made by <bdi class="u">@_ahmed_hellal</bdi></div>
+  <button class="btn alt" id="again" hidden>🔁 شوفي التجربة من الأول</button>
+ </section>
+
+</main>
+
+<script src="menu.js"></script>
+</body>
+</html>
